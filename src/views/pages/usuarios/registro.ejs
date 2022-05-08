@@ -1,0 +1,51 @@
+<!-- page -->
+<main class="relative min-h-screen w-full bg-white">
+    <!-- component -->
+    <div class="p-6" x-data="app">
+      <!-- header -->
+  
+      <form action="/register" method="POST" 
+        class="absolute top-1/2 left-1/2 mx-auto max-w-sm -translate-x-1/2 -translate-y-1/2 transform space-y-4 text-center"
+      >
+        <!-- register content -->
+        <div x-show="isLoginPage" class="space-y-4">
+          <header class="mb-3 text-2xl font-bold">Crear una cuenta</header>
+          <div class="w-full rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200">
+            <input
+              type="text"
+              placeholder="Nombre"
+              name="nombre"
+              id="nombre"
+              class="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+            />
+          </div>
+          <div class="w-full rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200">
+            <input
+              type="text"
+              placeholder="Correo"
+              name="correo"
+              id="correo"
+              class="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+            />
+          </div>
+          <div class="w-full rounded-2xl bg-gray-50 px-4 ring-2 ring-gray-200">
+            <input
+              type="password"
+              placeholder="Contraseña"
+              name="contrasena"
+              id="contrasena"
+              class="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+            />
+          </div>
+          <button
+            class="w-full rounded-2xl border-b-4 border-b-green-600 bg-green-500 py-3 font-bold text-white hover:bg-green-400 active:translate-y-[0.125rem] active:border-b-green-400"
+          >
+            Registrarse
+          </button>
+          <a class=" my-16 text-blue-600 hover:text-blue-500" href="/login">¿Ya tienes una cuenta? Inicia Sesión</a>
+          
+        </div>
+    
+      </form>
+    </div>
+  </main>
