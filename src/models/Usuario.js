@@ -1,4 +1,5 @@
 import pkg from 'mongoose';
+import bcrypt from 'bcryptjs';
 const  { Schema, model } = pkg;
 
 const UsuarioSchema = new Schema({
@@ -8,7 +9,8 @@ const UsuarioSchema = new Schema({
     },
     correo: {
         type: String,
-        required: true
+        required: true,
+        unique: true
 
     },
     contrasena: {
@@ -16,12 +18,12 @@ const UsuarioSchema = new Schema({
         required: true
     },
     rol: {
-        type: Schema.Types.ObjectId, ref: 'Rol',
-        required: true
+        type: String,
+        required: true,
+        default: 'usuario'
     },
     imagen: {
         type: String,
-        required: true
     },
     estado: {
         type: Boolean,
@@ -35,5 +37,18 @@ const UsuarioSchema = new Schema({
 },{
     timestamps: true
 });
+
+
+UsuarioSchema.methods.encryptPassword = (password) => {
+    const salt = bcrypt.genSaltSync(10);
+    return  bcrypt.hashSync(password, salt);
+}
+
+UsuarioSchema.methods.comparePassword = function(password) {
+    return  bcrypt.compareSync(password, this.contrasena);
+}
+
+
+
 
 export default model('Usuario', UsuarioSchema);

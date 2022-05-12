@@ -1,0 +1,34 @@
+<div class="flex justify-center w-full  ">
+    
+    <!-- Card -->
+    <div class="card ">
+        <div class="card-header">
+            <h3 class="card-title">Nueva Categoria</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form action="recetas/newcategory" enctype="multipart/form-data" method="POST">
+
+                <div class="form-control w-full ">
+                    <label class="label">
+                      <span class="label-text">Nombre de la categoria</span>
+                    </label>
+                    <input type="text" placeholder="categoria" name="nombre" id="nombre" class="input input-bordered w-full " />
+                </div>
+
+                <div class="form-control w-full">
+                    <label class="label" for="imagen">
+                        <span class="label-text">Imagen</span>
+                    </label>
+                    <input type="file" class="input input-bordered w-full" id="imagen" name="imagen">
+                </div>
+               
+                <div class="flex justify-center my-5">
+
+                    <button type="submit" class="btn btn-success text-white hover:text-black">Guardar</button>
+                </div>
+            </form>
+    
+    
+    </div>
+</div>

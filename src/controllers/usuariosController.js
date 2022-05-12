@@ -1,33 +1,19 @@
 import  Usuario  from '../models/Usuario.js';
 import passport from 'passport';
 
+
     //Método para obtener todos los usuarios
     export const getUsuarios = async (req, res) => {
         const usuarios = await Usuario.find();
         res.json(usuarios);
     }
     //Método para crear un usuario
-    export const createUsuario = async (req, res) => {
-        const { nombre, correo, contrasena } = req.body;
-        
-        try {
-            const usuario = new Usuario({
-                nombre,
-                correo,
-                contrasena
-            });
-            await usuario.save();
-            res.json({
-                status: 'Usuario guardado'
-            });    
-        } catch (error) {
-            console.log(error)
-            res.json({
-                status: 'Error al guardar el usuario'
-            });
-        }
-        
-    }
+    export const createUsuario = passport.authenticate('local-signup', {
+        successRedirect: '/',
+        failureRedirect: '/signup',
+        passReqToCallback: true,
+        failureFlash: true
+    });
     //Método para obtener un usuario
     export const getUsuario = async (req, res) => {
         const { id } = req.params;
@@ -58,17 +44,12 @@ import passport from 'passport';
         });
     }
     //Método para iniciar sesión
-    export const Login = async (req, res) => {
-        const { correo, contrasena } = req.body;
-        const usuario = await Usuario.findOne({ correo, contrasena });
-        if (usuario) {
-            
-        } else {
-            res.json({
-                status: 'Usuario no encontrado'
-            });
-        }
-    }
+    export const Login = passport.authenticate('local-signin', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        passReqToCallback: true,
+        failureFlash: true
+    });
   
 
     //Método para cerrar sesión

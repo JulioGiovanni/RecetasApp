@@ -4,7 +4,8 @@ const  { Schema, model } = pkg;
 const CategoriaSchema = new Schema({
     nombre: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     imagen : {
         type: String,
@@ -16,3 +17,5 @@ const CategoriaSchema = new Schema({
 });
 
 export default model('Categoria', CategoriaSchema);
+
+

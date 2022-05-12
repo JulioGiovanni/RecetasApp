@@ -1,5 +1,6 @@
 import app from './serverConfig.js';
 import './database.js';
+
 function main (){
 
     app.listen(app.get('port'), () => {
@@ -10,4 +11,3 @@ function main (){
 }
 
 main();
-

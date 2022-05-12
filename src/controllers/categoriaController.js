@@ -1,4 +1,5 @@
 import  Categoria  from '../models/Categoria.js';
+import path  from 'path'; //Para usar las rutas de archivos
 
 
 
@@ -13,12 +14,13 @@ export const categoriaController = {
     //Crear una categoría
     createCategoria: async (req, res) => {
         const { nombre } = req.body;
+        const name = req.file.originalname.split('.');
+
         const categoria = new Categoria({
-            nombre
+            nombre,
+            imagen:'src/public/uploads/' + name[0] + '-' + path.extname(req.file.originalname),
         });
         await categoria.save();
-        res.json({
-            status: 'Categoría guardada'
-        });
+        res.redirect('/recetas/'+categoria._id);
     }
 }

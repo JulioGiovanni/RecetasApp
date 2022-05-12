@@ -1,22 +1,20 @@
 <div class="flex justify-center align-center p-8">
     <div class="flex flex-col w-3/5 ">
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.laespanolaaceites.com%2Frecetas%2Fpizza-con-chorizo-jamon-y-queso%2F&psig=AOvVaw2hOhTo6C0ZJJlEf0h8_iyW&ust=1650936741348000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKj01eKIrvcCFQAAAAAdAAAAABAJ" style="max-width:500px;" alt="imagen de la receta">
+        <img src="../../<%=receta.imagen%>" style="max-width:500px;" alt="<%=receta.nombre%>">
         <!-- <img src="../../../public/images/pizza-hut-cadenas-de-pizza-cdmx.jpg" style="max-width:500px;" alt="imagen de la receta"> -->
         <p>preparación:</p>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, aspernatur earum consequuntur vel maxime nam? Consequatur accusamus reprehenderit esse itaque consectetur error temporibus magni voluptate ipsum, qui quod eos eaque ipsam nostrum. Culpa, modi? Expedita veniam reprehenderit, eum hic quo quae nisi culpa nemo mollitia non dolore deserunt debitis praesentium provident. Optio quibusdam veritatis, minus, nihil id beatae qui, est repellendus aspernatur ab voluptatum illo culpa odio omnis placeat. Mollitia, nesciunt eius! Debitis aperiam vitae, provident mollitia distinctio velit perferendis tempora cum cupiditate illo officiis eum corporis non repellendus nisi quaerat obcaecati, consequuntur aliquid ea hic numquam maiores modi. Accusantium pariatur reiciendis quidem optio corrupti nesciunt sed ex ea illo laudantium dicta, omnis sint ipsum voluptatem amet perspiciatis consequuntur impedit tempore. Autem perferendis suscipit culpa harum totam aliquam ducimus recusandae. Minus, quia, fugiat dolorem dolorum repellat tempore sit eos, fugit est expedita doloremque sequi adipisci porro ipsum architecto ipsa recusandae?
+            <%=receta.preparacion%>
         </p>
     </div>
     <div class="flex flex-col w-2/5">
-        <h1 class="text-7xl my-3">Título</h1>
+        <h1 class="text-7xl my-3"><%=receta.nombre%></h1>
         <p>Descripción: </p>
         <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore facilis sed itaque labore, officiis architecto harum mollitia vero consequuntur, doloribus perspiciatis provident fuga quam quaerat excepturi voluptas consectetur in pariatur, accusamus aut ab est quae esse. Unde, saepe. Ad eos explicabo dignissimos quam sit, eius doloribus nulla iusto. Earum, iure.
+            <%=receta.preparacion%>
         </p>
         <ul>
-            <li>Ingrediente 1</li>
-            <li>Ingrediente 2</li>
-            <li>Ingrediente 3</li>
+            <%=receta.ingredientes%>
         </ul>
     </div>
 

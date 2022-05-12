@@ -1,0 +1,81 @@
+<div class="flex justify-center w-full  ">
+    
+    <!-- Card -->
+    <div class="card ">
+        <div class="card-header">
+            <h3 class="card-title">Nueva Receta</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form action="recetas/newrecipe" enctype="multipart/form-data" method="POST">
+
+                <div class="form-control w-full ">
+                    <label class="label">
+                      <span class="label-text">Nombre de la receta</span>
+                    </label>
+                    <input type="text" placeholder="Receta" name="nombre" id="nombre" class="input input-bordered w-full " />
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Descripción</span>
+                    </label> 
+                    <textarea class="textarea textarea-bordered h-24" name="descripcion" id="descripcion" placeholder="Descripción de la receta"></textarea>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Ingredientes</span>
+                    </label> 
+                    <textarea class="textarea textarea-bordered h-24" name="ingredientes" id="ingredientes" placeholder="Ingredientes"></textarea>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Preparación</span>
+                    </label> 
+                    <textarea class="textarea textarea-bordered h-24" name="preparacion" id="preparacion" placeholder="Preparación"></textarea>
+                </div>
+
+                <div class="form-control w-full ">
+                    <label class="label">
+                      <span class="label-text">Cantidad de porciones</span>
+                    </label>
+                    <input type="number" placeholder="Cuántas personas" name="servings" id="servings" class="input input-bordered w-full " />
+                </div>
+
+                <div class="form-control w-full ">
+                    <label class="label">
+                      <span class="label-text">Tiempo (En minutos)</span>
+                    </label>
+                    <input type="number" placeholder="Minutos" name="tiempo" id="tiempo" class="input input-bordered w-full " />
+                </div>
+
+                <div class="form-control w-full ">
+                    <label class="label">
+                      <span class="label-text">Categoría</span>
+                    </label>
+                    <select name="categoria" id="categoria" class="select select-bordered">
+                        <% for(var i = 0; i < categorias.length; i++) { %>
+                            <% console.log(categorias[i])%>
+                            <option value="<%=categorias[i].id%>"> <%=categorias[i].nombre%> </option>
+                        <% } %>
+                    </select>
+
+                  </div>
+                <div class="form-control w-full">
+                    <label class="label" for="imagen">
+                        <span class="label-text">Imagen</span>
+                    </label>
+                    <input type="file" class="input input-bordered w-full" id="imagen" name="imagen">
+                </div>
+                <input type="hidden" name="usuario" id="usuario" value="<%=usuario.id%>">
+                <div class="flex justify-center my-5">
+
+                    <button type="submit" class="btn btn-success text-white hover:text-black">Guardar</button>
+                </div>
+            </form>
+    
+    
+    </div>
+</div>

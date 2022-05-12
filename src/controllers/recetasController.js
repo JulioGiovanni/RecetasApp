@@ -1,4 +1,7 @@
 import  Receta  from '../models/Recetas.js';
+import path  from 'path'; //Para usar las rutas de archivos
+import Usuario from '../models/Usuario.js';
+
 export const recetasController = {
     //Ver todas las recetas
     getAllRecetas: (req, res) => {
@@ -12,35 +15,38 @@ export const recetasController = {
     },
     //Crear una receta
     createReceta: (req, res) => {
-        const { nombre, descripcion, ingredientes, preparacion, imagen } = req.body;
+        const { nombre, descripcion, ingredientes, preparacion,categoria,servings,tiempo,usuario, } = req.body;
+        const name = req.file.originalname.split('.');
         const receta = new Receta({
             nombre,
             descripcion,
             ingredientes,
             preparacion,
-            
-            imagen
+            imagen:'src/public/uploads/' + name[0] + '-' + path.extname(req.file.originalname),
+            categoria,
+            usuario,
+            servings,
+            tiempo,
         });
+        console.log(receta);
         receta.save()
             .then(receta => {
-                res.json(receta);
+                res.redirect('/recetas/detalle/' + receta._id);
             })
             .catch(err => {
                 res.json(err);
             });
     },
     //Obtener una receta
-    getReceta: (req, res) => {
+    getReceta: async(req, res) => {
         const { id } = req.params;
-        return res.render('recetas/detalle');
-
-        // Receta.findById(id)
-        //     .then(receta => {
-        //         res.render('recetas/detalle', { receta });
-        //     })
-        //     .catch(err => {
-        //         res.json(err);
-        //     });
+        const receta = await Receta.findById(id);
+        if(req.user){
+            const usuario = await Usuario.findById(req.user.id)
+            res.render('recetas/detalle', { receta, usuario });
+        }
+        res.render('recetas/detalle', { receta });
+       
         },
     //Actualizar una receta
     updateReceta: (req, res) => {
@@ -74,28 +80,39 @@ export const recetasController = {
             });
     },
     //Obtener recetas por categoria
-    getRecetasByCategoria: (req, res) => {
+    getRecetasByCategoria: async(req, res) => {
         const { categoria } = req.params;
+        const recetas = await Receta.find({ categoria })
+   
+        if(req.user){
+            const usuario = await Usuario.findById(req.user.id);
+            res.render('recetas/recetas2', { recetas, usuario });
+        }else{
 
+            res.render('recetas/recetas2', { cat });
+        }
         // res.render('recetas/recetas');
-        res.render('recetas/recetas2');
-        // Receta.find({ categoria })
-        //     .then(recetas => {
-        //         res.send('reecetas/recetas', { recetas });
-        //     })
-        //     .catch(err => {
-        //         res.json(err);
-        //     });
+     
     },
     //Obtener recetas por nombre
-    getRecetasByNombre: (req, res) => {
-        const { nombre } = req.params;
-        Receta.find({ nombre })
-            .then(recetas => {
-                res.json(recetas);
-            })
-            .catch(err => {
-                res.json(err);
-            });
+    getRecetasByNombre: async(req, res) => {
+
+        const query =req.url.split('?')[1];
+        const recetas = await Receta.find({ query })
+        console.log(query)
+        console.log(recetas)
+        if(req.user){
+            const usuario = await Usuario.findById(req.user.id);
+            res.render('recetas/buscar', { recetas, usuario });
+        }else{   
+            res.render('recetas/buscar', { recetas });
+        }
     },
+
+    getRecetasByUsuario: async(req, res) => {
+        const usuario = await Usuario.findById(req.user.id);
+        const recetas = await Receta.find({usuario}  );
+        res.render('recetas/recetas2', { recetas, usuario });
+
+    }
 }
