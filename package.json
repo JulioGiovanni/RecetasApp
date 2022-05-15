@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
     "dev": "nodemon src/server.js"

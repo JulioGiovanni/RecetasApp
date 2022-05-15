@@ -89,7 +89,7 @@ export const recetasController = {
             res.render('recetas/recetas2', { recetas, usuario });
         }else{
 
-            res.render('recetas/recetas2', { cat });
+            res.render('recetas/recetas2', { recetas,categoria });
         }
         // res.render('recetas/recetas');
      
