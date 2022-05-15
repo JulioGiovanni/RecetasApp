@@ -28,7 +28,6 @@ export const recetasController = {
             servings,
             tiempo,
         });
-        console.log(receta);
         receta.save()
             .then(receta => {
                 res.redirect('/recetas/detalle/' + receta._id);
@@ -99,8 +98,6 @@ export const recetasController = {
 
         const query =req.url.split('?')[1];
         const recetas = await Receta.find({ query })
-        console.log(query)
-        console.log(recetas)
         if(req.user){
             const usuario = await Usuario.findById(req.user.id);
             res.render('recetas/buscar', { recetas, usuario });

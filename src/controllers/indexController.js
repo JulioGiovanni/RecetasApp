@@ -32,7 +32,6 @@ export const indexController = {
         const user = req.user;
         const usuario = await Usuario.findById(req.user.id)
         const recetas = await Recetas.find({usuario: usuario.id})
-        console.log(recetas);
         res.render('usuarios/perfil',{usuario,recetas});
     },
     //Nueva Receta
@@ -41,13 +40,13 @@ export const indexController = {
         const user = req.user;
         const usuario = await Usuario.findById(user.id)
 
-        res.render('recetas/nuevaReceta',{usuario,categorias});
+        res.render('recetas/NuevaReceta',{usuario,categorias});
     },
 
     NewCategory: async (req,res) => {
         const user = req.user;
         const usuario = await Usuario.findById(user.id)
-        res.render('recetas/nuevaCategoria',{usuario});
+        res.render('recetas/NuevaCategoria',{usuario});
     }
 
 }

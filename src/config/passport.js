@@ -16,7 +16,6 @@ passport.use('local-signup', new LocalStrategy({
         } else {
             //obtener el nombre del archivo
             const name = req.file.originalname.split('.');
-            console.log(req.file);
             const newUser = new User();
             newUser.nombre = nombre;
             newUser.correo = correo;
