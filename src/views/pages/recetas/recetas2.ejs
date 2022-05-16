@@ -41,6 +41,9 @@
             </div>
             <p class="mb-4 text-gray-500"><%=recetas[i].descripcion%></p>
             <a href="/recetas/detalle/<%=recetas[i].id%>"><button class="text-white bg-green-400 p-4 rounded-md w-full uppercase">Ver Receta</button></a>
+            <div class="absolute top-0 right-0 mt-4 mr-4 bg-blue-500 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase hover:bg-blue-400">
+              <a href="/recetas/editar/<%=recetas[i].id %>"><span>Editar</span></a>
+            </div>
           </div>
           <!-- <div class="absolute top-0 right-0 mt-4 mr-4 bg-green-400 text-white rounded-full pt-1 pb-1 pl-4 pr-5 text-xs uppercase">
             <span>Medium</span>

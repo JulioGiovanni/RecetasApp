@@ -1,6 +1,8 @@
-import  Receta  from '../models/Recetas.js';
 import path  from 'path'; //Para usar las rutas de archivos
+import Receta from '../models/Recetas.js';
 import Usuario from '../models/Usuario.js';
+import Categoria from '../models/Categoria.js';
+
 
 export const recetasController = {
     //Ver todas las recetas
@@ -111,5 +113,15 @@ export const recetasController = {
         const recetas = await Receta.find({usuario}  );
         res.render('recetas/recetas2', { recetas, usuario });
 
+    },
+    editReceta: async(req, res) => {
+        const { id } = req.params;
+        const receta = await Receta.findById(id);
+        const cat = await Categoria.findOne(receta.categoria);
+        const categorias = await  Categoria.find({});
+        const usuario = await Usuario.findById(req.user.id);
+        console.log(cat)
+        res.render('recetas/editarReceta', { receta, cat,categorias,usuario });
+        
     }
 }

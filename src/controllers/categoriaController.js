@@ -21,6 +21,6 @@ export const categoriaController = {
             imagen:'src/public/uploads/' + name[0] + '-' + path.extname(req.file.originalname),
         });
         await categoria.save();
-        res.redirect('/recetas/'+categoria._id);
+        res.redirect('/recetas/'+categoria.id);
     }
 }

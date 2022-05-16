@@ -13,6 +13,7 @@ const router = express.Router();
 
 router.get('/:categoria',RC.getRecetasByCategoria);
 router.get('/detalle/:id',RC.getReceta);
+router.get('/editar/:id',isAuthenticated,RC.editReceta);
 router.post('/newcategory',[isAdmin,upload.single('imagen')],CC.createCategoria);
 router.post('/newrecipe',[isAuthenticated,upload.single('imagen')],RC.createReceta);
 
