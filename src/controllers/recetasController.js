@@ -42,11 +42,12 @@ export const recetasController = {
     getReceta: async(req, res) => {
         const { id } = req.params;
         const receta = await Receta.findById(id);
-        if(req.user){
-            const usuario = await Usuario.findById(req.user.id)
+        let usuario = null
+         if (req.user){
+            usuario = await Usuario.findById(req.user.id)
+         }
             res.render('recetas/detalle', { receta, usuario });
-        }
-        res.render('recetas/detalle', { receta,usuario:null });
+     
        
         },
     //Actualizar una receta
@@ -83,14 +84,12 @@ export const recetasController = {
     getRecetasByCategoria: async(req, res) => {
         const { categoria } = req.params;
         const recetas = await Receta.find({ categoria })
-   
-        if(req.user){
-            const usuario = await Usuario.findById(req.user.id);
-            res.render('recetas/recetas2', { recetas, usuario });
-        }else{
-
-            res.render('recetas/recetas2', { recetas,categoria,usuario:null });
+        let usuario = null
+        if (req.user){
+           usuario = await Usuario.findById(req.user.id)
         }
+        return res.render('recetas/recetas2', { recetas, usuario });
+        
         // res.render('recetas/recetas');
      
     },
@@ -99,12 +98,12 @@ export const recetasController = {
 
         const query =req.url.split('?')[1];
         const recetas = await Receta.find({ query })
-        if(req.user){
-            const usuario = await Usuario.findById(req.user.id);
-            res.render('recetas/buscar', { recetas, usuario });
-        }else{   
-            res.render('recetas/buscar', { recetas,usuario:null });
+        let usuario = null
+        if (req.user){
+           usuario = await Usuario.findById(req.user.id)
         }
+            res.render('recetas/buscar', { recetas, usuario });
+      
     },
 
     getRecetasByUsuario: async(req, res) => {
