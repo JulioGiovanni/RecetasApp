@@ -7,7 +7,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="recetas/editrecipe/<%= receta.id %>" enctype="multipart/form-data" method="POST">
+            <form action="/recetas/editar/<%= receta.id %>" enctype="multipart/form-data" method="POST">
 
                 <div class="form-control w-full ">
                     <label class="label">
@@ -62,7 +62,7 @@
                       <span class="label-text">Categoría</span>
                     </label>
                     <select name="categoria" id="categoria" class="select select-bordered">
-                        <option  value="<%= cat.nombre %>" selected><%= cat.nombre %> </option>
+                        <option  value="<%= cat.id %>" selected><%= cat.nombre %> </option>
                         <% for(var i = 0; i < categorias.length; i++) { %>
                             <%if(categorias[i].nombre != cat.nombre) { %>
                             <option value="<%=categorias[i].id%>"> <%=categorias[i].nombre%> </option>

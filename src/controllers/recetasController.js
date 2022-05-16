@@ -46,39 +46,38 @@ export const recetasController = {
             const usuario = await Usuario.findById(req.user.id)
             res.render('recetas/detalle', { receta, usuario });
         }
-        res.render('recetas/detalle', { receta });
+        res.render('recetas/detalle', { receta,usuario:null });
        
         },
     //Actualizar una receta
-    updateReceta: (req, res) => {
+    updateReceta: async (req, res) => {
         const { id } = req.params;
-        const { nombre, descripcion, ingredientes, preparacion, imagen } = req.body;
-        Receta.findByIdAndUpdate(id, {
+        const usuario = req.user;
+        const receta = await Receta.findById(id)
+        const { nombre, descripcion, ingredientes, preparacion,categoria,servings,tiempo, } = req.body;
+        const name = req.file.originalname.split('.');
+       await  Receta.findByIdAndUpdate(id, {
             nombre,
             descripcion,
             ingredientes,
             preparacion,
-            imagen
+            imagen:'src/public/uploads/' + name[0] + '-' + path.extname(req.file.originalname),
+            categoria,
+            servings,
+            tiempo,
         }, {
             new: true
         })
-            .then(receta => {
-                res.json(receta);
-            })
-            .catch(err => {
-                res.json(err);
-            });
+           res.redirect('recetas/detalle', { receta,usuario });
     },
     //Eliminar una receta
     deleteReceta: (req, res) => {
         const { id } = req.params;
         Receta.findByIdAndRemove(id)
-            .then(receta => {
-                res.json(receta);
+            .then(() => {
+                res.redirect('back');
             })
-            .catch(err => {
-                res.json(err);
-            });
+            
     },
     //Obtener recetas por categoria
     getRecetasByCategoria: async(req, res) => {
@@ -90,7 +89,7 @@ export const recetasController = {
             res.render('recetas/recetas2', { recetas, usuario });
         }else{
 
-            res.render('recetas/recetas2', { recetas,categoria });
+            res.render('recetas/recetas2', { recetas,categoria,usuario:null });
         }
         // res.render('recetas/recetas');
      
@@ -104,7 +103,7 @@ export const recetasController = {
             const usuario = await Usuario.findById(req.user.id);
             res.render('recetas/buscar', { recetas, usuario });
         }else{   
-            res.render('recetas/buscar', { recetas });
+            res.render('recetas/buscar', { recetas,usuario:null });
         }
     },
 
@@ -120,7 +119,6 @@ export const recetasController = {
         const cat = await Categoria.findOne(receta.categoria);
         const categorias = await  Categoria.find({});
         const usuario = await Usuario.findById(req.user.id);
-        console.log(cat)
         res.render('recetas/editarReceta', { receta, cat,categorias,usuario });
         
     }

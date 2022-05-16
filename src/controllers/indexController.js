@@ -15,7 +15,7 @@ export const indexController = {
         }else{
             const recetas = await Recetas.find({}).sort({_id:-1}).limit(3);
             const categorias = await Categoria.find({});
-            res.render('home',{recetas,categorias});
+            res.render('home',{recetas,categorias,usuario:null});
         }
         
     },
