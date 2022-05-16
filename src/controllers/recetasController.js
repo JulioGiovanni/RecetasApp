@@ -102,7 +102,9 @@ export const recetasController = {
     getRecetasByNombre: async(req, res) => {
 
         const query =req.url.split('?')[1];
-        const recetas = await Receta.find({ query })
+        //Find the recipe by name
+        const recetas = await Receta.find({ nombre: { $regex: query, $options: 'i' } });
+        // const recetas = await Receta.find({ query })
         let usuario = null
         if (req.user){
            usuario = await Usuario.findById(req.user.id)

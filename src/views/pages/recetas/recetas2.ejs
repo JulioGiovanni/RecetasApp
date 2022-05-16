@@ -14,7 +14,7 @@
        <!-- card -->
         <div class="bg-white rounded-md overflow-hidden relative shadow-md">
           <div>
-            <img class="w-full" src="../<%=recetas[i].imagen%>" alt="<%=recetas[i].nombre%>">
+            <img class="w-full" src="../<%=recetas[i].imagen%>" alt="<%=recetas[i].nombre%>" style="height: 270px;">
           </div>
           <div class="p-4">
             <h2 class="text-2xl text-green-400"><%=recetas[i].nombre%></h2>
@@ -39,8 +39,8 @@
                 <span class="ml-1 lg:text-xl"><%=recetas[i].servings%></span>
               </div>
             </div>
-            <p class="mb-4 text-gray-500"><%=recetas[i].descripcion%></p>
-            <a href="/recetas/detalle/<%=recetas[i].id%>"><button class="text-white bg-green-400 p-4 rounded-md w-full uppercase">Ver Receta</button></a>
+            <p style="height:100px ;" class="mb-4 text-gray-500"><%=recetas[i].descripcion%></p>
+            <a href="/recetas/detalle/<%=recetas[i].id%>"><button class="text-white bg-green-700 p-4 rounded-md w-full uppercase hover:bg-green-600 ">Ver Receta</button></a>
           </div>
           <% if(usuario) { %>
             <%if(usuario.id == recetas[i].usuario || usuario.rol == 'admin') { %>
