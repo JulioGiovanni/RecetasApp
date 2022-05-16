@@ -19,19 +19,15 @@ export const indexController = {
         
     },
     //Inicio de sesión
-     Login: (req,res) => {
+     Login: async(req,res) => {
         let usuario = null
-        if (req.user){
-           usuario = await Usuario.findById(req.user.id)
-        }
+        
         res.render('usuarios/inicio',{usuario});
     },
     //Inicio de sesión
-     Register: (req,res) => {
+     Register: async(req,res) => {
         let usuario = null
-        if (req.user){
-           usuario = await Usuario.findById(req.user.id)
-        }
+        
         res.render('usuarios/registro',{usuario});
     },
     //Perfil
