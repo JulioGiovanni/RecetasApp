@@ -1,13 +1,13 @@
 <div class="flex md:flex-row justify-center align-center p-8 flex-col">
-    <div class=" w-3/5 p-4 order-last md:order-first">
-        <img src="../../<%=receta.imagen%>" class="w-full rounded-xl" style="height:600px ;" alt="<%=receta.nombre%>">
+    <div class=" w-3/5 p-4 ">
+        <img src="../../<%=receta.imagen%>" class="w-full rounded-xl h-auto md:h-5/6"  alt="<%=receta.nombre%>">
         <!-- <img src="../../../public/images/pizza-hut-cadenas-de-pizza-cdmx.jpg" style="max-width:500px;" alt="imagen de la receta"> -->
         
     </div>
-    <div class= w-2/5 p-4 md:order-first order-last">
-        <h1 class="text-7xl my-5"><%=receta.nombre%></h1>
-        <p class="text-3xl mt-5 font-bold">Descripción: </p>
-        <p class="text-xl mt-5">
+    <div class= w-2/5 p-4">
+        <h1 class="md:text-7xl text-3xl my-5"><%=receta.nombre%></h1>
+        <p class="md:text-3xl text-xl mt-5 font-bold">Descripción: </p>
+        <p class="md:text-xl text-lg mt-5">
             <%=receta.descripcion%>
         </p>
         
@@ -18,12 +18,12 @@
 
 
     <div class="w-1/2 p-8">
-        <p class="text-3xl font-bold">Ingredientes:</p>
+        <p class="md:text-3xl text-xl font-bold">Ingredientes:</p>
         <ul class="list-disc mt-5 ml-5">
             <!-- each escape a new li -->
             <% let ingredientes = receta.ingredientes.split('\n')%>
             <%for(var i=0; i < ingredientes.length; i++ ){%>
-                <li class="text-xl mt-1"><%=ingredientes[i]%></li>
+                <li class="md:text-xl text-lg mt-1"><%=ingredientes[i]%></li>
             <%}%>
         </ul>
             
@@ -32,8 +32,8 @@
     </div>
 
     <div class="w-1/2 p-8">
-        <p class="text-3xl font-bold">Método de Preparación:</p>
-    <p class="text-xl mt-5">
+        <p class="md:text-3xl text-xl font-bold">Método de Preparación:</p>
+    <p class="md:text-xl text-lg mt-5">
         <%=receta.preparacion%>
     </p>
     </div>
