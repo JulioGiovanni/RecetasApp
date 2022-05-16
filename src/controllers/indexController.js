@@ -24,7 +24,7 @@ export const indexController = {
         if (req.user){
            usuario = await Usuario.findById(req.user.id)
         }
-        res.render('usuarios/inicio');
+        res.render('usuarios/inicio',{usuario});
     },
     //Inicio de sesión
      Register: (req,res) => {
@@ -32,7 +32,7 @@ export const indexController = {
         if (req.user){
            usuario = await Usuario.findById(req.user.id)
         }
-        res.render('usuarios/registro');
+        res.render('usuarios/registro',{usuario});
     },
     //Perfil
     Profile: async (req,res) => {
