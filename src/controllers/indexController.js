@@ -20,15 +20,23 @@ export const indexController = {
     },
     //Inicio de sesión
      Login: (req,res) => {
+        let usuario = null
+        if (req.user){
+           usuario = await Usuario.findById(req.user.id)
+        }
         res.render('usuarios/inicio');
     },
     //Inicio de sesión
      Register: (req,res) => {
+        let usuario = null
+        if (req.user){
+           usuario = await Usuario.findById(req.user.id)
+        }
         res.render('usuarios/registro');
     },
     //Perfil
     Profile: async (req,res) => {
-        const user = req.user;
+
         const usuario = await Usuario.findById(req.user.id)
         const recetas = await Recetas.find({usuario: usuario.id})
         res.render('usuarios/perfil',{usuario,recetas});
