@@ -56,20 +56,25 @@ export const recetasController = {
         const usuario = req.user;
         const receta = await Receta.findById(id)
         const { nombre, descripcion, ingredientes, preparacion,categoria,servings,tiempo, } = req.body;
-        const name = req.file.originalname.split('.');
-       await  Receta.findByIdAndUpdate(id, {
-            nombre,
-            descripcion,
-            ingredientes,
-            preparacion,
-            imagen:'src/public/uploads/' + name[0] + '-' + path.extname(req.file.originalname),
-            categoria,
-            servings,
-            tiempo,
-        }, {
-            new: true
-        })
-           res.redirect('recetas/detalle', { receta,usuario });
+        await  Receta.findById(id);
+        
+        receta.nombre = nombre;
+        receta.descripcion = descripcion;
+        receta.ingredientes = ingredientes;
+        receta.preparacion = preparacion;
+        receta.categoria = categoria;
+        receta.usuario = usuario;
+        receta.servings = servings;
+        receta.tiempo = tiempo;
+        
+
+        if(req.file){
+            const name = req.file.originalname.split('.');
+            receta.imagen = 'src/public/uploads/' + name[0] + '-' + path.extname(req.file.originalname);
+
+        }
+            receta.save()
+            return res.redirect('/recetas/detalle/'+id);
     },
     //Eliminar una receta
     deleteReceta: (req, res) => {
